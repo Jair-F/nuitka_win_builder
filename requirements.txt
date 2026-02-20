@@ -1,24 +1,22 @@
-# --- The "Big 5" Problematic Categories ---
-# 1. Scientific & Math (The "Recipe" Kings)
+# --- Project Specifics ---
+pre-commit
+pyshortcuts
+python-box
+pywin32
+pyyaml
+winotify
+
+# --- The "Big 5" (Triggering Nuitka's Global Brain) ---
 numpy
 pandas
 scipy
 matplotlib
-
-# 2. Machine Learning (The "DLL-Mapping" Heavies)
-# Use CPU versions to keep your Docker image size manageable
 torch --index-url https://download.pytorch.org
 torchvision --index-url https://download.pytorch.org
-
-# 3. GUI Frameworks (The "Resource" Tricky ones)
 PyQt6
 CustomTkinter
-
-# 4. Computer Vision & Imaging
 opencv-python-headless
 Pillow
-
-# 5. Networking & Web (The "Anti-Bloat" Targets)
 requests
 urllib3
 playwright

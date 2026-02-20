@@ -1,57 +1,24 @@
 import os
 import sys
 
-# 1. Scientific & Math (The "Recipe" Kings)
-try:
-    import numpy
-    import pandas
-    import scipy
-    import matplotlib.pyplot as plt
-    print(f"Captured Math/Science Recipes: {numpy.__version__}, {pandas.__version__}")
-except ImportError:
-    print("Warning: Math/Science libs not found - skipping recipe trigger.")
+def trigger(name, func):
+    try:
+        func()
+        print(f"✅ Cached: {name}")
+    except ImportError:
+        print(f"❌ Skipped: {name} (Not installed)")
 
-# 2. Machine Learning (The "DLL-Mapping" Heavies)
-try:
-    import torch
-    import torchvision
-    print(f"Captured Torch/ML Recipes: {torch.__version__}")
-except ImportError:
-    print("Warning: Torch libs not found - skipping recipe trigger.")
+# --- Project Specific Imports ---
+trigger("Windows API", lambda: (__import__('win32api'), __import__('winotify')))
+trigger("Data/Config", lambda: (__import__('box'), __import__('yaml')))
+trigger("Shortcuts", lambda: __import__('pyshortcuts'))
 
-# 3. GUI Frameworks (The "Resource" Tricky ones)
-try:
-    from PyQt6.QtCore import QCoreApplication
-    import customtkinter
-    print("Captured GUI Recipes: PyQt6 & CustomTkinter")
-except ImportError:
-    print("Warning: GUI libs not found - skipping recipe trigger.")
-
-# 4. Computer Vision & Imaging
-try:
-    import cv2
-    from PIL import Image
-    print("Captured Vision Recipes: OpenCV & Pillow")
-except ImportError:
-    print("Warning: Vision libs not found - skipping recipe trigger.")
-
-# 5. Networking & Web (The "Anti-Bloat" Targets)
-try:
-    import requests
-    import urllib3
-    # Note: Playwright requires a browser install to fully warm up, 
-    # but the Nuitka plugin logic triggers on import.
-    import playwright
-    print("Captured Networking/Web Recipes")
-except ImportError:
-    print("Warning: Web libs not found - skipping recipe trigger.")
-
-# --- The Actual "Warmup" Action ---
-def main():
-    print("\n--- Nuitka Warmup Report ---")
-    print(f"Python Version: {sys.version}")
-    print(f"Nuitka Cache Target: {os.environ.get('NUITKA_CACHE_DIR', 'Default Path')}")
-    print("Status: All internal plugin triggers successfully analyzed.")
+# --- Big Library Imports (The "Problematic" ones) ---
+trigger("Scientific", lambda: (__import__('numpy'), __import__('pandas'), __import__('scipy')))
+trigger("Machine Learning", lambda: (__import__('torch'), __import__('torchvision')))
+trigger("GUI", lambda: (__import__('PyQt6.QtCore'), __import__('customtkinter')))
+trigger("Vision", lambda: (__import__('cv2'), __import__('PIL.Image')))
+trigger("Web", lambda: (__import__('requests'), __import__('playwright')))
 
 if __name__ == "__main__":
-    main()
+    print(f"\nWarmup complete for Python {sys.version}")
