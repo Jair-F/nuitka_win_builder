@@ -22,4 +22,4 @@ RUN mkdir -p /opt/nuitka_cache && chmod 777 /opt/nuitka_cache
 
 
 COPY ./* /tmp/repo/
-RUN /tmp/repo/warmup_uitka_cache.sh
+RUN /tmp/repo/warmup_nuitka_cache.sh
