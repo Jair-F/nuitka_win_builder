@@ -9,6 +9,7 @@ wine python -m nuitka --version --assume-yes-for-downloads --mingw64
 
 touch /tmp/repo/dummy.ico
 wine python -m nuitka --standalone --onefile --mingw64 --assume-yes-for-downloads \
+    --include-runtime-dependencies \
     --windows-icon-from-ico=/tmp/repo/dummy.ico \
     --company-name="MyCompany" \
     --product-name="OfflineCompiler" \
@@ -18,11 +19,16 @@ wine python -m nuitka --standalone --onefile --mingw64 --assume-yes-for-download
     --copyright="2024" \
     --output-dir=/tmp/output /tmp/repo/warmup.py
 
-# compile for the big ones
-wine python -m nuitka --standalone --onefile --mingw64 \
-    --plugin-enable=torch --plugin-enable=numpy --plugin-enable=qt-plugins \
-    --plugin-enable=matplotlib --plugin-enable=anti-bloat \
-    --assume-yes-for-downloads warmup.py
+# compile for the big ones without console
+wine python -m nuitka --standalone --onefile --mingw64 --assume-yes-for-downloads \
+    --include-runtime-dependencies \
+    --plugin-enable=torch \
+    --plugin-enable=numpy \
+    --plugin-enable=qt-plugins \
+    --plugin-enable=matplotlib \
+    --plugin-enable=anti-bloat \
+    --windows-console-mode=disable \
+    --output-dir=/tmp/output warmup.py
 
 # cleanup - only keep nuitka and whats needed for it
 wine python -m pip uninstall -r /tmp/requirements.txt -y
