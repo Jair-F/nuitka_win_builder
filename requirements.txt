@@ -21,3 +21,4 @@ Pillow
 requests
 urllib3
 playwright
+opencv-python

@@ -1,0 +1,6 @@
+ARG BUILDER_VERSION=latest
+FROM jairf/nuitka_win_builder:${BUILDER_VERSION}
+
+COPY ./* /tmp/repo/
+# for offline use
+RUN /tmp/repo/warmup_nuitka_cache.sh
