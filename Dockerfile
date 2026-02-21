@@ -1,10 +1,9 @@
 FROM tobix/pywine:3.12
 
 # install nuitka in wine with all dlls and stuff
-RUN curl https://www.dependencywalker.com/depends22_x86.zip -o /tmp/depends22_x86.zip
+RUN curl https://www.dependencywalker.com/depends22_x64.zip -o /tmp/depends22_x64.zip
 # Fix for 64-bit Dependency Walker
-RUN curl -L https://www.dependencywalker.com -o /tmp/depends22_x64.zip && \
-    mkdir -p /opt/wineprefix/drive_c/users/root/AppData/Local/Nuitka/Nuitka/Cache/downloads/depends/x86_64/ && \
+RUN mkdir -p /opt/wineprefix/drive_c/users/root/AppData/Local/Nuitka/Nuitka/Cache/downloads/depends/x86_64/ && \
     unzip /tmp/depends22_x64.zip -d /opt/wineprefix/drive_c/users/root/AppData/Local/Nuitka/Nuitka/Cache/downloads/depends/x86_64/
 
     # 1. Enable contrib and non-free repositories

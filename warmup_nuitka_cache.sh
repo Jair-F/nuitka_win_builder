@@ -22,12 +22,10 @@ wine python -m nuitka --standalone --onefile --mingw64 --lto=no --assume-yes-for
     --plugin-enable=pyqt6 \
     --enable-plugin=tk-inter \
     --plugin-enable=matplotlib \
-    --plugin-enable=anti-bloat \
-    --plugin-enable=anti-multiprocessing \
     --plugin-enable=pickleable-itertools \
     --plugin-enable=anti-bloat \
     --windows-console-mode=disable \
-    --output-dir=/tmp/output warmup.py
+    --output-dir=/tmp/output /tmp/repo/warmup.py
 
 # cleanup - only keep nuitka and whats needed for it
 wine python -m pip uninstall -r /tmp/repo/requirements.txt -y
