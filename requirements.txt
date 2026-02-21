@@ -1,5 +1,5 @@
 # --- Project Specifics ---
-msvc-runtime
+pickleable
 pre-commit
 pyshortcuts
 python-box
@@ -12,11 +12,10 @@ numpy
 pandas
 scipy
 matplotlib
-torch --index-url https://download.pytorch.org
-torchvision --index-url https://download.pytorch.org
+torch
+torchvision
 PyQt6
 CustomTkinter
-opencv-python-headless
 Pillow
 requests
 urllib3

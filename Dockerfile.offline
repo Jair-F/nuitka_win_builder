@@ -3,4 +3,4 @@ FROM jairf/nuitka_win_builder:${BUILDER_VERSION}
 
 COPY ./* /tmp/repo/
 # for offline use
-RUN /tmp/repo/warmup_nuitka_cache.sh
+RUN chmod +x /tmp/repo/warmup_nuitka_cache.sh && /tmp/repo/warmup_nuitka_cache.sh
