@@ -1,4 +1,5 @@
 # --- Project Specifics ---
+msvc-runtime
 pickleable
 pre-commit
 pyshortcuts
@@ -9,15 +10,7 @@ winotify
 
 # --- The "Big 5" (Triggering Nuitka's Global Brain) ---
 numpy
-pandas
-scipy
-matplotlib
-torch
-torchvision
-PyQt6
-CustomTkinter
-Pillow
+PyQt6==6.6.0
+PyQt6-Qt6==6.6.0
 requests
 urllib3
-playwright
-opencv-python

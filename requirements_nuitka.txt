@@ -2,4 +2,3 @@
 Nuitka[onefile]==2.6
 zstandard
 ordered-set
-msvc-runtime

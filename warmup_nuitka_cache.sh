@@ -1,11 +1,19 @@
 #!/bin/bash
 set -e
 
-# installing nuitka with mingw
-wine python -m pip install -r /tmp/repo/requirements_nuitka.txt
-wine python -m pip install -r /tmp/repo/requirements.txt
-wine python -m nuitka --version --assume-yes-for-downloads --mingw64
+# Dockerfile: kniwase/wine-python-nuitka:3.10
+# working PyQt:
+# PyQt6==6.6.0
+# PyQt6-Qt6==6.6.0
+# if upgrading nuitka also do one fake build to download mingw
 
+# installing nuitka with mingw
+# wine python -m pip install -r /tmp/repo/requirements_nuitka.txt
+# wine python -m pip install -r /tmp/repo/requirements.txt
+wine python -m nuitka --version --assume-yes-for-downloads --clang
+
+mkdir -p /tmp/repo/
+cp warmup.py /tmp/repo
 touch /tmp/repo/dummy.ico
 wine python -m nuitka \
     --standalone --onefile \
@@ -24,7 +32,7 @@ wine python -m nuitka \
     --output-dir=/tmp/output /tmp/repo/warmup.py
 
 # cleanup - only keep nuitka and whats needed for it
-wine python -m pip uninstall -r /tmp/repo/requirements.txt -y
+# wine python -m pip uninstall -r /tmp/repo/requirements.txt -y
 wine python -m pip cache purge
 
 rm -rfd /tmp/output
