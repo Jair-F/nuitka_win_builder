@@ -10,6 +10,7 @@ wine python -m nuitka --version --assume-yes-for-downloads --mingw64
 touch /tmp/repo/dummy.ico
 wine python -m nuitka --standalone --onefile --mingw64 --assume-yes-for-downloads \
     --include-runtime-dependencies \
+    --experimental=new-dll-tool \
     --windows-icon-from-ico=/tmp/repo/dummy.ico \
     --company-name="MyCompany" \
     --product-name="OfflineCompiler" \
@@ -22,6 +23,7 @@ wine python -m nuitka --standalone --onefile --mingw64 --assume-yes-for-download
 # compile for the big ones without console
 wine python -m nuitka --standalone --onefile --mingw64 --assume-yes-for-downloads \
     --include-runtime-dependencies \
+    --experimental=new-dll-tool \
     --plugin-enable=torch \
     --plugin-enable=numpy \
     --plugin-enable=qt-plugins \

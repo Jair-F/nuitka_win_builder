@@ -17,9 +17,11 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 RUN xvfb-run winetricks -q mfc42
 
-ENV NUITKA_CACHE_DIR=/opt/nuitka_cache
-RUN mkdir -p /opt/nuitka_cache && chmod 777 /opt/nuitka_cache
-
-
 COPY ./* /tmp/repo/
-RUN /tmp/repo/warmup_nuitka_cache.sh
+RUN wine python -m pip install -r /tmp/repo/requirements_nuitka.txt
+
+# ENV NUITKA_CACHE_DIR=/opt/nuitka_cache
+# RUN mkdir -p /opt/nuitka_cache && chmod 777 /opt/nuitka_cache
+
+# for offline use
+# RUN /tmp/repo/warmup_nuitka_cache.sh

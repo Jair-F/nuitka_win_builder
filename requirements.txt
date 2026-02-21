@@ -1,4 +1,5 @@
 # --- Project Specifics ---
+msvc-runtime
 pre-commit
 pyshortcuts
 python-box
