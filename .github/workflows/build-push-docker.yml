@@ -24,7 +24,7 @@ jobs:
           file: Dockerfile
           push: true
           platforms: linux/amd64
-          tags: jairf/nuitka_win_builder:${{ github.ref_name }}
+          tags: jairf/nuitka_win_builder:latest # jairf/nuitka_win_builder:${{ github.ref_name }}
 #   build-push-container-offline:
 #     runs-on: ubuntu-24.04
 #     needs: build-push-container
